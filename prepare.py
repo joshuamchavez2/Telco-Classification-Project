@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore")
 
 def clean_telco(df):
 
-    df = acquire.get_telco_data() # grabbing the telco data
+    #df = acquire.get_telco_data() # grabbing the telco data
     df = df.drop_duplicates() # Dropping Duplicates
     df = df.drop(columns = ['customer_id']) # Don't need this column
     
@@ -29,16 +29,18 @@ def clean_telco(df):
     df = pd.concat([df, total_charges], axis = 1)
     
     # In the three lines below are mapping out the current values for what they actually represent.
-    payment = df.payment_type_id.map({1: 'Electronic check', 2: 'Mailed check', 3:'Bank transder', 4:'Credit card'})
+    payment = df.payment_type_id.map({1: 'Electronic check', 2: 'Mailed check', 3:'Bank transfer', 4:'Credit card'})
     internet = df.internet_service_type_id.map({1: 'DSL', 2: 'Fiber optic', 3:'None'})
     contract = df.contract_type_id .map({1: 'Month-to-month', 2: 'One year', 3:'Two year'})
+    senior = df.senior_citizen.map({1: "Yes", 0: "No"})
     
     # In the three lines below im adding each series to my dataframe and renaming the columns
     df = pd.concat([df, payment.rename("payment")], axis = 1)
     df = pd.concat([df, internet.rename("internet_service")], axis = 1)
     df = pd.concat([df, contract.rename("contract")], axis = 1)
+    df = pd.concat([df, senior.rename("senior")], axis = 1)
     
-    df = df.drop(columns=['payment_type_id','contract_type_id', 'internet_service_type_id']) # Dropping old columns
+    df = df.drop(columns=['payment_type_id', 'payment_type_id.1','contract_type_id', 'contract_type_id.1', 'payment_type' ,'internet_service_type','internet_service_type_id', 'internet_service_type_id.1']) # Dropping old and duplicate columns
     
     boolean = df.nunique()[df.nunique() <= 2].index # boolean is a list of columns who's values are either true/false or 1/0
 
@@ -53,7 +55,7 @@ def clean_telco(df):
     
     # In the line below, I am grabbing all the categorical columns(that are greater than 2) and saving the values into categ as a list
     categ = df.nunique()[(df.nunique() > 2) & (df.nunique() < 5)].index
-    
+
     # Grabbing dummies, this time dont drop the first columns.
     categ_dummy = pd.get_dummies(df[categ]) # Grabbing dummies, this time dont drop the first columns.
     
