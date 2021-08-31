@@ -1,4 +1,5 @@
-## Telco Churn Classification Project
+## Telco Classification Project
+<img src="charts/Logo.png" align="center" width="650" height="650">
 
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
