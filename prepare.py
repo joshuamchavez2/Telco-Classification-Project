@@ -40,7 +40,7 @@ def clean_telco(df):
     df = pd.concat([df, contract.rename("contract")], axis = 1)
     df = pd.concat([df, senior.rename("senior")], axis = 1)
     
-    df = df.drop(columns=['payment_type_id', 'payment_type_id.1','contract_type_id', 'contract_type_id.1', 'payment_type' ,'internet_service_type','internet_service_type_id', 'internet_service_type_id.1']) # Dropping old and duplicate columns
+    df = df.drop(columns=['payment_type_id', 'payment_type_id.1', 'contract_type','contract_type_id', 'contract_type_id.1', 'payment_type' ,'internet_service_type','internet_service_type_id', 'internet_service_type_id.1']) # Dropping old and duplicate columns
     
     boolean = df.nunique()[df.nunique() <= 2].index # boolean is a list of columns who's values are either true/false or 1/0
 
