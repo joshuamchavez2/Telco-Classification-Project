@@ -1,5 +1,5 @@
 ## Telco Classification Project
-<img src="charts/Logo.png" align="center" width="250" height="250">
+<img src="charts/Logo.png" align="center" width="335" height="250">
 
 <hr style="border-top: 10px groove blueviolet; margin-top: 1px; margin-bottom: 1px"></hr>
 
